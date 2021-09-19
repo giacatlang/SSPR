@@ -1,0 +1,98 @@
+{
+  "log": {
+        "access": "/var/log/v2ray/access.log",
+        "error": "/var/log/v2ray/error.log",
+        "loglevel": "warning"
+    },
+  "inbounds": [
+    {
+    "port":10367,
+      "listen": "127.0.0.1", 
+      "tag": "vmess-in", 
+      "protocol": "vmess", 
+      "settings": {
+        "clients": [
+          {
+	  "id":"f773cd1b-49cf-4d36-8699-d1ccb3710709",
+	  "alterId":2
+          }
+        ]
+      }, 
+      "streamSettings": {
+        "network": "ws", 
+        "wsSettings": {
+	  "path":"/e6f106d74d695bc/"
+        }
+      }
+    }
+  ], 
+  "outbounds": [
+        {
+            "tag":"IP4_out",
+            "protocol": "freedom",
+            "settings": {}
+        },
+        {
+            "tag":"IP6_out",
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "UseIPv6" 
+            }
+        }
+    ],    
+  "dns": {
+    "servers": [
+            {
+                "address": "172.64.36.1",
+                "port": 53,
+                "domains": [
+                    "geosite:netflix",
+                    "geosite:bahamut",
+                    "geosite:hulu",
+                    "geosite:hbo",
+                    "geosite:disney",
+                    "geosite:bbc",
+                    "geosite:4chan",
+                    "geosite:fox",
+                    "geosite:abema",
+                    "geosite:dmm",
+                    "geosite:niconico",
+                    "geosite:pixiv",
+                    "geosite:bilibili",
+                    "geosite:viu"
+                ]
+            },
+        "localhost"
+        ]
+    },
+  "routing": {
+	 "rules": [
+            {
+                "type": "field",
+                "outboundTag": "IP6_out",
+		 "domains": [
+                    "geosite:netflix",
+                    "geosite:bahamut",
+                    "geosite:hulu",
+                    "geosite:hbo",
+                    "geosite:disney",
+                    "geosite:bbc",
+                    "geosite:4chan",
+                    "geosite:fox",
+                    "geosite:abema",
+                    "geosite:dmm",
+                    "geosite:niconico",
+                    "geosite:pixiv",
+                    "geosite:bilibili",
+                    "geosite:viu"
+                ]
+		},
+{
+                "type": "field",
+                "outboundTag": "IP4_out",
+                "network": "udp,tcp"
+            }
+]
+		   
+}
+}
